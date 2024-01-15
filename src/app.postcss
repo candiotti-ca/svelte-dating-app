@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+html,
+body {
+	@apply h-full overflow-hidden;
+}
+
+[data-theme="seafoam"] h1, [data-theme="seafoam"] h2, [data-theme="seafoam"] h3, [data-theme="seafoam"] h4, [data-theme="seafoam"] h5, [data-theme="seafoam"] h6 {
+	font-style: normal;
+}
+
+:root [data-theme='seafoam'] {
+    --theme-font-family-heading: 'Verdana', sans-serif;
+    --theme-font-style-heading: normal;
+}
