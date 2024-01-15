@@ -32,5 +32,7 @@
 		</AppRail>
 	</svelte:fragment>
 
-	<slot />
+	<div class="p-20">
+		<slot />
+	</div>
 </AppShell>

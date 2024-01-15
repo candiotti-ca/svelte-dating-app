@@ -9,7 +9,7 @@
 	];
 </script>
 
-<div class="flex gap-4 p-10">
+<div class="flex space-x-4">
 	{#each mock_favs as profile}
 		<ProfilePreview {profile} />
 	{/each}
