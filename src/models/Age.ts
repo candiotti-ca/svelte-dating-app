@@ -10,3 +10,11 @@ export const AGES: Age[] = [
     { value: 3, description: "Used by life" },
     { value: 4, description: "Holed all over" }
 ];
+
+//TODO store avec les constantes
+//TODO chaussette qui change de couleur
+//TODO blog avec des histoires de chaussettes
+//TODO partie favorites et expl9re
+//TODO top searchbar
+//https://fontawesome.com/search?q=socket&o=r&m=free&s=solid&f=classic
+//https://www.magicpattern.design/tools/css-backgrounds

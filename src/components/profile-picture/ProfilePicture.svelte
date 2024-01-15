@@ -10,10 +10,10 @@
 	top:10%;
 	left: 45%;
 	height: 100px;
-	background: #ccc;
 	border-top: solid 10px rebeccapurple;
 	border-bottom: dashed 1px rebeccapurple;
 	z-index: 1;
+	background: repeating-linear-gradient( 45deg, #444cf7, #444cf7 3px, #e5e5f7 3px, #e5e5f7 10px );
 }
 .socks:before {
 	content: '';
@@ -24,7 +24,7 @@
 	top: 90px;
 	z-index:-1;
 	border-radius: 0 0 75px 35px;
-	background: #CCC;
+	background: #e5e5f7;
 }
 .socks:after {
 	content: '';
@@ -34,9 +34,9 @@
 	right: 32px;
 	width: 40px;
 	height: 75px;
-	background: #ccc;
 	border-radius: 0 0 75px 75px;
 	transform: rotate(45deg);
 	border-top: dashed 1px rebeccapurple;
+	background: repeating-linear-gradient( 45deg, #444cf7, #444cf7 3px, #e5e5f7 3px, #e5e5f7 10px );
 }
 </style>

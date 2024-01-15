@@ -20,9 +20,9 @@
 				<span>Explore</span>
 			</AppRailAnchor>
 
-			<AppRailAnchor href="/favorites" selected={$page.url.pathname === '/favorites'}>
+			<AppRailAnchor href="/pairs" selected={$page.url.pathname === '/pairs'}>
 				<svelte:fragment slot="lead"><i class="fa-solid fa-heart" /></svelte:fragment>
-				<span>Favorites</span>
+				<span>Pairs</span>
 			</AppRailAnchor>
 
 			<AppRailAnchor href="/profile" selected={$page.url.pathname === '/profile'}>
