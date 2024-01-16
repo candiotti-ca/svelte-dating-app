@@ -1,14 +1,52 @@
-import type { Age } from "./Age";
 import type { Color } from "./Color";
-import type { Pattern } from "./Pattern";
 
-export interface Profile {
+export class Profile {
+    id: string;
     firstname: string;
     lastname: string;
-    age: Age;
-    abstract: string;
+    age: number;
+    abstract?: string;
     city: string;
     size: number;
     colors: Color[];
-    pattern: Pattern;
+    pattern: string;
+    favoriteProfiles: string[];
+
+    constructor(id: string, firstname: string = '', lastname: string = '', abstract: string = '', city: string = '', size: number = 37, colors: Color[] = [], age: number = 0, pattern: string = '', favoriteProfiles: string[] = []) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.abstract = abstract;
+        this.age = age;
+        this.city = city;
+        this.size = size;
+        this.colors = colors;
+        this.pattern = pattern;
+        this.favoriteProfiles = favoriteProfiles;
+    }
+
+    public similarityRate(that: Profile): number {
+        let similarity = 0;
+        const total = this.colors.length + 3;
+
+        if (this.age == that.age) {
+            similarity++;
+        }
+
+        if (this.size == that.size) {
+            similarity++;
+        }
+
+        if (this.pattern == that.pattern) {
+            similarity++;
+        }
+
+        if (this.colors.length > 0) {
+            this.colors
+                .filter(color => that.colors.includes(color))
+                .forEach(() => similarity++);
+        }
+
+        return similarity / total;
+    }
 }

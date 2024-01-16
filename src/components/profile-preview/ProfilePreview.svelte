@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
+	import { currentProfile } from '../../store/store';
 
 	export let profile: Profile;
 
@@ -25,5 +26,6 @@
 
 	<div class="p-4 text-center">
 		<h3 class="h3">{profile.firstname}</h3>
+		<h6 class="h6">{$currentProfile.similarityRate(profile)}% similar</h6>
 	</div>
 </a>
