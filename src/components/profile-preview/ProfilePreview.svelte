@@ -29,6 +29,7 @@
 		<div class="flex justify-end">
 			<button
 				data-testid="pair-sock"
+				title="Make a pair!"
 				on:click={togglePairing}
 				class="btn-icon variant-filled{indexInFavorites > -1 ? '-primary' : ''}"
 			>
@@ -36,8 +37,11 @@
 			</button>
 		</div>
 		<div class="text-start">
-			<h2 class="h2">{profile.firstname} {profile.lastname?.charAt(0)?.toUpperCase()}.</h2>
-			<p class="h6">{$currentProfile.formattedSimilarityRate(profile)} similar</p>
+			<h2 class="h2">
+				{profile.firstname}
+				{profile.lastname?.charAt(0)?.toUpperCase()}.
+			</h2>
+			<p class="font-light">{$currentProfile.formattedSimilarityRate(profile)} similar</p>
 		</div>
 	</div>
 </button>

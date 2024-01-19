@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:wght@300;400;500;600;700');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,11 +10,7 @@ body {
 	@apply h-full overflow-hidden;
 }
 
-[data-theme="seafoam"] h1, [data-theme="seafoam"] h2, [data-theme="seafoam"] h3, [data-theme="seafoam"] h4, [data-theme="seafoam"] h5, [data-theme="seafoam"] h6 {
-	font-style: normal;
-}
-
-:root [data-theme='seafoam'] {
-    --theme-font-family-heading: 'Verdana', sans-serif;
-    --theme-font-style-heading: normal;
+:root [data-theme='modern'] {
+    --theme-font-family-base: 'Quicksand', sans-serif;
+    --theme-font-family-heading: 'Quicksand', sans-serif;
 }
