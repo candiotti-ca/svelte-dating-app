@@ -29,6 +29,14 @@ export const colors: Readable<Color[]> = readable([
     { name: 'Green', code: '#0F0' }
 ]);
 
+export const themeColors: Readable<Color[]> = readable([
+    { name: 'Secondary', code: 'bg-secondary-500' },
+    { name: 'Tertiary', code: 'bg-tertiary-500' },
+    { name: 'Success', code: 'bg-success-500' },
+    { name: 'Warning', code: 'bg-warning-500' },
+    { name: 'Error', code: 'bg-error-500' },
+    { name: 'Surface', code: 'bg-surface-500' }
+]);
 
 const profileA: Profile = new Profile(
     '1',
@@ -40,7 +48,8 @@ const profileA: Profile = new Profile(
     [],
     0,
     'Striped',
-    []
+    [],
+    { name: 'Success', code: 'bg-success-500' }
 );
 
 const profileB: Profile = new Profile(
@@ -52,7 +61,9 @@ const profileB: Profile = new Profile(
     38,
     [],
     0,
-    'Striped'
+    'Striped',
+    [],
+    { name: 'Secondary', code: 'bg-secondary-500' }
 );
 
 const profileC: Profile = new Profile(
@@ -64,7 +75,9 @@ const profileC: Profile = new Profile(
     38,
     [],
     1,
-    'Polka-Dot'
+    'Polka-Dot',
+    [],
+    { name: 'Tertiary', code: 'bg-tertiary-500' }
 );
 
 export interface WritableProfiles extends Readable<Profile[]> {

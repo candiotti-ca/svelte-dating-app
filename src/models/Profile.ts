@@ -9,10 +9,11 @@ export class Profile {
     city: string;
     size: number;
     colors: Color[];
+    bgColor: Color;
     pattern: string;
     favoriteProfiles: string[];
 
-    constructor(id: string, firstname: string = '', lastname: string = '', abstract: string = '', city: string = '', size: number = 37, colors: Color[] = [], age: number = 0, pattern: string = '', favoriteProfiles: string[] = []) {
+    constructor(id: string, firstname: string = '', lastname: string = '', abstract: string = '', city: string = '', size: number = 37, colors: Color[] = [], age: number = 0, pattern: string = '', favoriteProfiles: string[], bgColor: Color) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -23,6 +24,7 @@ export class Profile {
         this.colors = colors;
         this.pattern = pattern;
         this.favoriteProfiles = favoriteProfiles;
+        this.bgColor = bgColor;
     }
 
     public similarityRate(that: Profile): number {

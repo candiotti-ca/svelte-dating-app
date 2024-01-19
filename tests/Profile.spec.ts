@@ -15,7 +15,9 @@ function buildProfile(size: number, colors: Color[], age: number, pattern: strin
         size,
         colors,
         age,
-        pattern
+        pattern,
+        [],
+        COLOR_BLACK
     );
 };
 

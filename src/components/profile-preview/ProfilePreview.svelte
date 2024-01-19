@@ -24,7 +24,11 @@
 	}
 </script>
 
-<button class="card card-hover bg-red" on:click={goToProfileDetails} data-testid="profile-preview">
+<button
+	class="card card-hover {profile.bgColor.code}"
+	on:click={goToProfileDetails}
+	data-testid="profile-preview"
+>
 	<div class="p-4 w-[20vw] h-[50vh] overflow-scroll flex flex-col justify-between">
 		<div class="flex justify-end">
 			<button
