@@ -1,31 +1,43 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
-	import { currentProfile } from '../../store/store';
+	import { currentProfile, profiles } from '../../store/store';
 
 	export let profile: Profile;
+	let loggedInProfile: Profile = $currentProfile;
 
-	$: initials =
-		profile.firstname.charAt(0).toUpperCase() + profile.lastname.charAt(0).toUpperCase();
+	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
+
+	function goToProfileDetails(): void {
+		console.log('go to profile details');
+	}
+
+	function togglePairing(event: Event): void {
+		event.stopPropagation();
+
+		if (indexInFavorites > -1) {
+			loggedInProfile.favoriteProfiles.splice(indexInFavorites);
+		} else {
+			loggedInProfile.favoriteProfiles.push(profile.id);
+		}
+
+		profiles.updatePairsOfProfile(loggedInProfile);
+	}
 </script>
 
-<a class="card card-hover overflow-scroll max-w-[20vw] max-h-[50vh]" href="/">
-	<header>
-		<img
-			src="https://cdn.pixabay.com/photo/2024/01/07/16/27/chinese-reed-8493547_1280.jpg"
-			class="bg-black/50 w-full aspect-[21/9]"
-			alt="Post"
-		/>
-		<Avatar
-			src="https://cdn.pixabay.com/photo/2016/07/04/04/32/sock-1495920_1280.jpg"
-			border="border-4 border-surface-800"
-			class="relative top-[-30px] left-[38%]"
-			{initials}
-		/>
-	</header>
-
-	<div class="p-4 text-center">
-		<h3 class="h3">{profile.firstname}</h3>
-		<h6 class="h6">{$currentProfile.similarityRate(profile)}% similar</h6>
+<button class="card card-hover bg-red" on:click={goToProfileDetails} data-testid="profile-preview">
+	<div class="p-4 w-[20vw] h-[50vh] overflow-scroll flex flex-col justify-between">
+		<div class="flex justify-end">
+			<button
+				data-testid="pair-sock"
+				on:click={togglePairing}
+				class="btn-icon variant-filled{indexInFavorites > -1 ? '-primary' : ''}"
+			>
+				<i class="fa-solid fa-socks" />
+			</button>
+		</div>
+		<div class="text-start">
+			<h2 class="h2">{profile.firstname} {profile.lastname?.charAt(0)?.toUpperCase()}.</h2>
+			<p class="h6">{$currentProfile.formattedSimilarityRate(profile)} similar</p>
+		</div>
 	</div>
-</a>
+</button>

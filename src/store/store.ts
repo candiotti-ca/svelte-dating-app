@@ -40,7 +40,7 @@ const profileA: Profile = new Profile(
     [],
     0,
     'Striped',
-    ['2', '3']
+    []
 );
 
 const profileB: Profile = new Profile(
@@ -67,7 +67,26 @@ const profileC: Profile = new Profile(
     'Polka-Dot'
 );
 
-export const profiles: Writable<Profile[]> = writable([
+export interface WritableProfiles extends Readable<Profile[]> {
+    updatePairsOfProfile(toUpdate: Profile): void;
+}
+function createProfiles(initialValue: Profile[]): WritableProfiles {
+    const { subscribe, update }: Writable<Profile[]> = writable(initialValue);
+
+    return {
+        subscribe,
+        updatePairsOfProfile: (toUpdate: Profile) => update(profiles => {
+            const found = profiles.find(p => p.id == toUpdate.id);
+            if (found) {
+                found.favoriteProfiles = toUpdate.favoriteProfiles;
+            }
+
+            return profiles;
+        })
+    };
+}
+
+export const profiles: WritableProfiles = createProfiles([
     profileA, profileB, profileC
 ]);
 
