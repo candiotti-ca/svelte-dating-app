@@ -49,4 +49,10 @@ export class Profile {
 
         return similarity / total;
     }
+
+    public formattedSimilarityRate(that: Profile): string {
+        const rate = this.similarityRate(that);
+        const rounded = Math.round(rate * 100);
+        return rounded + '%';
+    }
 }
