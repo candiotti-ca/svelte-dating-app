@@ -1,14 +1,22 @@
 <script lang="ts">
+	import type { ModalComponent, ModalSettings } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
 	import { currentProfile, profiles } from '../../store/store';
+	import ProfileDetails from '../profile-details/ProfileDetails.svelte';
 
+	const modalStore = getModalStore();
 	export let profile: Profile;
 	let loggedInProfile: Profile = $currentProfile;
 
 	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
 
-	function goToProfileDetails(): void {
-		console.log('go to profile details');
+	function showDetails(): void {
+		const component: ModalComponent = { ref: ProfileDetails };
+		modalStore.trigger({
+			type: 'component',
+			component
+		});
 	}
 
 	function togglePairing(event: Event): void {
@@ -26,10 +34,10 @@
 
 <button
 	class="card card-hover {profile.bgColor.code}"
-	on:click={goToProfileDetails}
+	on:click={showDetails}
 	data-testid="profile-preview"
 >
-	<div class="p-4 w-[20vw] h-[50vh] overflow-scroll flex flex-col justify-between">
+	<div class="p-4 w-[15vw] h-[40vh] overflow-scroll flex flex-col justify-between">
 		<div class="flex justify-end">
 			<button
 				data-testid="pair-sock"
@@ -40,12 +48,20 @@
 				<i class="fa-solid fa-socks" />
 			</button>
 		</div>
+
 		<div class="text-start">
-			<h2 class="h2">
+			<h2 class="h2 text-white">
 				{profile.firstname}
 				{profile.lastname?.charAt(0)?.toUpperCase()}.
 			</h2>
-			<p class="font-light">{$currentProfile.formattedSimilarityRate(profile)} similar</p>
+			<p class="font-light text-white">
+				{$currentProfile.formattedSimilarityRate(profile)} similar
+			</p>
 		</div>
 	</div>
 </button>
+
+<div class="card p-4 w-72 shadow-xl" data-popup="popupFeatured">
+	<div><p>Demo Content</p></div>
+	<div class="arrow bg-surface-100-800-token" />
+</div>

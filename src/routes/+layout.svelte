@@ -1,10 +1,23 @@
 <script lang="ts">
-	import { AppBar, AppRail, AppRailAnchor, AppShell } from '@skeletonlabs/skeleton';
-	import '../app.postcss';
 	import { page } from '$app/stores';
+	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
+	import {
+		AppBar,
+		AppRail,
+		AppRailAnchor,
+		AppShell,
+		Modal,
+		initializeStores,
+		storePopup
+	} from '@skeletonlabs/skeleton';
+	import '../app.postcss';
 	import SearchBar from '../components/search-bar/SearchBar.svelte';
+
+	initializeStores();
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 </script>
 
+<Modal />
 <AppShell>
 	<svelte:fragment slot="header">
 		<AppBar slotDefault="place-self-center">
