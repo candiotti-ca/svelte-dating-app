@@ -2,162 +2,108 @@
 	import type { Profile } from '../../models/Profile';
 
 	export let profile: Profile;
-	let age = 4;
-	let colorA = '#F7B239';
-	let colorB = '#2BA5F7';
+
+	$: colorA = profile.colors[0]?.code || '#e0e0fc';
+	$: colorB = profile.colors[1]?.code || '#e0e0fc';
+	$: sockBody = () => {
+		switch (profile.pattern) {
+			case 'Striped':
+				return `background-image: linear-gradient(0deg, ${colorA} 50%, ${colorB} 50%);`;
+			case 'Polka-Dot':
+				return `background-image: radial-gradient(${colorB} 2.8px, ${colorA} 0px);`;
+			case 'Chevron':
+				return `background-image: linear-gradient(135deg, ${colorA} 25%, transparent 25%),
+			linear-gradient(225deg, ${colorA} 25%, transparent 25%),
+			linear-gradient(45deg, ${colorA} 25%, transparent 25%),
+			linear-gradient(315deg, ${colorA} 25%, ${colorB} 25%);`;
+			case 'Plain':
+				return `background: ${colorB};`;
+			default:
+				return ``;
+		}
+	};
 </script>
 
 <div
 	style="clip-path: circle(50% at center);"
-	class="flex justify-center items-center h-[300px] w-[300px] bg-surface-50"
+	class="flex justify-center items-center h-[230px] w-[230px] bg-{profile.bgColor.code}"
 >
-	<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" height="230px">
-		<!-- FILLING -->
-		<defs>
-			<pattern
-				id="stripes"
-				width="20"
-				height="10"
-				patternUnits="userSpaceOnUse"
-				patternTransform="rotate(45 50 50)"
-			>
-				<line stroke={colorA} stroke-width="10px" y2="10" />
-			</pattern>
-		</defs>
-
-		<!-- BASE SOCK -->
-		<g>
-			<!-- BODY -->
-			<path
-				fill="url(#stripes)"
-				stroke="black"
-				stroke-width="3px"
-				d="M404.027,417.883c-33.896-4.811-23.886,21.295-41.798,48.462 c-6.166,9.329-32.003,15.19-34.189,26.863c-0.916,4.847-22.489,4.078-22.562,8.852c-5.348-3.248-10.342-7.326-14.823-12.222 L190.458,380.3l-3.663-1.294c7.155-12.918-37.168-32.407-37.168-48.219c0-14.53-7.182-18.351-13.287-30.5 c-11.99-23.895,17.866-46.985-8.911-52.907l0.94-2.125l-9.671-152.921l65.54-20.755l86.977,20.755l3.846,135.106 c0.501,17.607,6.691,34.579,17.644,48.365l101.26,125.118C398.203,406.162,401.561,411.888,404.027,417.883z"
-			/>
-
-			<!-- TOES -->
-			<path
-				fill={colorB}
-				stroke="black"
-				stroke-width="3px"
-				d="M395.041,485.357c-0.073,0.098-0.159,0.195-0.232,0.293C381.243,503.123,361.133,512,340.949,512 c-12.284,0-24.604-3.285-35.471-9.939c0.073-4.774,0.549-9.609,1.465-14.457c2.21-11.832,6.74-22.638,13.028-32.052 c17.961-26.948,50.318-42.455,84.055-37.669C413.099,439.911,410.145,465.699,395.041,485.357z"
-			/>
-
-			<!-- TOP -->
-			<polygon
-				fill={colorB}
-				stroke="black"
-				stroke-width="3px"
-				points="271.216,92.334 118.686,92.334 112.85,0 268.591,0 &#9;"
-			/>
-
-			<!-- BACK -->
-			<path
-				fill={colorB}
-				stroke="black"
-				stroke-width="3px"
-				d="M198.028,335.415c0,15.812-4.078,30.672-11.233,43.591l-50.038-17.656 c-27.949-9.866-41.551-41.466-29.512-68.561l20.171-45.41h0.012C167.82,256.317,198.028,292.325,198.028,335.415z"
-			/>
-
-			<!-- ELASTIC -->
-			<path
-				style="fill:#2197D8;"
-				d="M239.03,80.737c-5.057,0-9.158-4.1-9.158-9.158v-50.82c0-5.057,4.1-9.158,9.158-9.158 s9.158,4.1,9.158,9.158V71.58C248.188,76.636,244.088,80.737,239.03,80.737z"
-			/>
-			<path
-				style="fill:#2197D8;"
-				d="M198.281,80.737c-5.057,0-9.158-4.1-9.158-9.158v-50.82c0-5.057,4.1-9.158,9.158-9.158 s9.158,4.1,9.158,9.158V71.58C207.439,76.636,203.338,80.737,198.281,80.737z"
-			/>
-			<path
-				style="fill:#2197D8;"
-				d="M 158.12 80.637 C 153.063 80.637 148.962 76.537 148.962 71.479 L 148.962 20.659 C 148.962 15.602 153.062 11.501 158.12 11.501 C 163.178 11.501 167.278 15.601 167.278 20.659 L 167.278 71.48 C 167.278 76.536 163.178 80.637 158.12 80.637 Z"
-			/>
-		</g>
-
-		<!-- TOES RIP -->
-		{#if age > 2}
-			<g>
-				<polyline
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					points="387.693 491.976 377.038 485.655 378.302 476.264 365.299 473.916"
-					transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"
-				/>
-				<polyline
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					points="374.149 502.189 363.674 495.688 359.52 485.575"
-					transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"
-				/>
-				<polyline
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					points="321.235 507.788 321.596 496.591 332.431 488.284 331.709 481.24"
-					transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"
-				/>
-			</g>
-		{/if}
-
-		<!-- BACK RIPS -->
-		{#if age == 1}
-			<g>
-				<path
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					d="M 104 324.066 L 108.811 313.118 L 121.252 313.118 L 122.248 307.146"
-				/>
-				<path
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					d="M 109.475 338.332 L 123.741 339.659 L 139.334 335.015 L 149.121 340.323"
-				/>
-				<path
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					d="M 135.353 360.561 L 142.984 349.944 L 153.932 350.276 L 155.093 346.461"
-				/>
-				<path
-					fill={colorB}
-					stroke="black"
-					stroke-width="3px"
-					d="M 163.719 370.846 L 169.028 363.049 L 178.981 362.386"
-				/>
-			</g>
-		{/if}
-
-		<!-- BACK DRESSING -->
-		{#if age > 1}
-			<g
-				transform="matrix(0.11200899630784988, 0, 0, 0.1016170084476471, 105.82910919189453, 292.4588317871094)"
-			>
-				<path
-					d="M375.83,160.681c-4.513,0-8.17,3.658-8.17,8.17v174.298c0,4.512,3.657,8.17,8.17,8.17c4.513,0,8.17-3.658,8.17-8.17 V168.851C384,164.339,380.343,160.681,375.83,160.681z"
-				/>
-				<path
-					d="M136.17,160.681c-4.513,0-8.17,3.658-8.17,8.17v174.298c0,4.512,3.657,8.17,8.17,8.17s8.17-3.658,8.17-8.17V168.851 C144.34,164.339,140.683,160.681,136.17,160.681z"
-				/>
-				<path
-					d="M438.468,128H384V73.532C384,32.986,351.014,0,310.468,0H201.532C160.986,0,128,32.986,128,73.532V128H73.532 C32.986,128,0,160.986,0,201.532v108.936C0,351.014,32.986,384,73.532,384H367.66v54.468c0,31.536-25.657,57.191-57.192,57.191 H201.532c-31.535,0-57.191-25.656-57.191-57.191v-29.957c0-4.512-3.657-8.17-8.17-8.17s-8.17,3.658-8.17,8.17v29.957 C128,479.014,160.986,512,201.532,512h108.936C351.014,512,384,479.014,384,438.468V384h54.468 C479.014,384,512,351.014,512,310.468V201.532C512,160.986,479.014,128,438.468,128z M144.34,73.532 c0-31.536,25.657-57.191,57.191-57.191h108.936c31.535,0,57.192,25.656,57.192,57.191V128H144.34V73.532z M495.66,310.468 c0,31.536-25.657,57.192-57.191,57.192H73.532c-31.535,0-57.191-25.656-57.191-57.192V201.532 c0-31.536,25.657-57.191,57.191-57.191h364.936c31.535,0,57.191,25.656,57.191,57.191V310.468z"
-				/>
-				<path
-					d="M310.468,160.681H201.532c-22.526,0-40.851,18.325-40.851,40.851v108.936c0,22.526,18.325,40.851,40.851,40.851h108.936 c22.526,0,40.851-18.325,40.851-40.851V201.532C351.319,179.006,332.994,160.681,310.468,160.681z M334.979,310.468 c0,13.516-10.996,24.511-24.511,24.511H201.532c-13.515,0-24.511-10.995-24.511-24.511V201.532 c0-13.516,10.996-24.511,24.511-24.511h108.936c13.515,0,24.511,10.995,24.511,24.511V310.468z"
-				/>
-				<circle cx="212.426" cy="212.426" r="8.17" />
-				<circle cx="256" cy="212.426" r="8.17" />
-				<circle cx="299.574" cy="212.426" r="8.17" />
-				<circle cx="212.426" cy="256" r="8.17" />
-				<circle cx="256" cy="256" r="8.17" />
-				<circle cx="299.574" cy="256" r="8.17" />
-				<circle cx="212.426" cy="299.574" r="8.17" />
-				<circle cx="256" cy="299.574" r="8.17" />
-				<circle cx="299.574" cy="299.574" r="8.17" />
-			</g>
-		{/if}
-	</svg>
+	<div id="sock">
+		<div class="body {profile.pattern.toLowerCase()}" style={sockBody()}>
+			<div class="band" style="background: {colorA}" />
+			<div class="heel" style="background: {colorA}" />
+			<div class="point" style="background: {colorA}" />
+		</div>
+		<div id="sock_outline" />
+	</div>
 </div>
+
+<style>
+	#sock {
+		/* Contient la chaussette et l'outline */
+		position: relative;
+		bottom: 80px;
+		right: 33px;
+	}
+
+	.body {
+		/* Utilise comme masque l'entiereté de la chaussette. Permet de set la couleur du "body" */
+		position: absolute;
+		mask-image: url(/src/assets/sock_fill.svg);
+		width: 96px;
+		height: 161px;
+	}
+
+	.band {
+		/* Bande élastique de la chaussette */
+		mask-image: url(/src/assets/band.svg);
+		height: 30px;
+		width: 60px;
+	}
+
+	.heel {
+		/* Talon */
+		mask-image: url(/src/assets/heel.svg);
+		height: 37px;
+		width: 32px;
+		top: 80px;
+		position: absolute;
+	}
+
+	.point {
+		/* Pointe */
+		mask-image: url(/src/assets/point.svg);
+		height: 30px;
+		width: 30px;
+		top: 127px;
+		right: 4px;
+		position: absolute;
+	}
+
+	#sock_outline {
+		/* Div placée de maniere absolute sur l'autre, doit absolument être en dernier pour passer au dessus. Utilise un SVG de la chaussette avec juste les contours, de cette manière on peut changer la couleur des contours si on le souhaite */
+		position: absolute;
+		mask-image: url(/src/assets/sock.svg);
+		width: 96px;
+		height: 161px;
+		background: black;
+	}
+
+	.chevron {
+		background-position:
+			10px 0,
+			10px 0,
+			0 0,
+			0 0;
+		background-size: 20px 20px;
+		background-repeat: repeat;
+	}
+
+	.striped {
+		background-size: 10px 10px;
+	}
+
+	.polka-dot {
+		background-size: 10px 10px;
+	}
+</style>
