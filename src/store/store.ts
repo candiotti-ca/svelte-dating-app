@@ -6,10 +6,9 @@ import { Profile } from "../models/Profile";
 
 export const ages: Readable<Age[]> = readable([
     { value: 0, description: "Brand new!" },
-    { value: 1, description: "Barely worn" },
-    { value: 2, description: "Regular use" },
-    { value: 3, description: "Some quite kilometers at the clock" },
-    { value: 4, description: "Holed all over" }
+    { value: 1, description: "Regular use" },
+    { value: 2, description: "Some quite kilometers at the clock" },
+    { value: 3, description: "Holed all over" }
 ]);
 
 export const patterns: Readable<Pattern[]> = readable([
@@ -17,9 +16,8 @@ export const patterns: Readable<Pattern[]> = readable([
     { name: 'Plain' },
     { name: 'Polka-dot' },
     { name: 'Custom' },
-    { name: 'Rhombus' },
-    { name: 'ZigZag' },
-    { name: 'Cross' }
+    { name: 'Chevron' },
+    { name: 'ZigZag' }
 ]);
 
 export const colors: Readable<Color[]> = readable([
