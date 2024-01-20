@@ -1,12 +1,12 @@
 <script lang="ts">
 	import ProfilePicture from '../../components/profile-picture/ProfilePicture.svelte';
-	import { ages, colors, currentProfile, patterns } from '../../store/store';
+	import { ages, colors, currentProfile, patterns, themeColors } from '../../store/store';
 
 	let profile = $currentProfile;
 </script>
 
-<div class="flex justify-center mb-10">
-	<ProfilePicture />
+<div class="flex flex-col items-center mb-10">
+	<ProfilePicture {profile} />
 </div>
 
 <div class="flex space-x-10 justify-center mb-5">
@@ -77,4 +77,17 @@
 			{/each}
 		</div>
 	</label>
+</div>
+
+<div class="flex space-x-10 justify-center">
+	<label class="label w-[19vw]">
+		<span>Background picture color</span>
+		<select class="select" value={profile.bgColor}>
+			{#each $themeColors as color}
+				<option value={color}>{color.name}</option>
+			{/each}
+		</select>
+	</label>
+
+	<div class="w-[19vw]"></div>
 </div>
