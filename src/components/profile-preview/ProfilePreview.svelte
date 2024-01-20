@@ -7,8 +7,8 @@
 
 	const modalStore = getModalStore();
 	export let profile: Profile;
+	const bgColor = `bg-shadow-${profile.bgColor.code}/100`;
 	let loggedInProfile: Profile = $currentProfile;
-
 	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
 
 	function showDetails(): void {
@@ -33,11 +33,7 @@
 	}
 </script>
 
-<button
-	class="card card-hover {profile.bgColor.code}"
-	on:click={showDetails}
-	data-testid="profile-preview"
->
+<button class="card card-hover {bgColor}" on:click={showDetails} data-testid="profile-preview">
 	<div class="p-4 w-[15vw] h-[40vh] overflow-scroll flex flex-col justify-between">
 		<div class="flex justify-end">
 			<button
