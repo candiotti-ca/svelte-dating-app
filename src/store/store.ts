@@ -8,7 +8,7 @@ export const ages: Readable<Age[]> = readable([
     { value: 0, description: "Brand new!" },
     { value: 1, description: "Barely worn" },
     { value: 2, description: "Regular use" },
-    { value: 3, description: "Used by life" },
+    { value: 3, description: "Some quite kilometers at the clock" },
     { value: 4, description: "Holed all over" }
 ]);
 

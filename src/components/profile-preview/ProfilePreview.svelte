@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ModalComponent, ModalSettings } from '@skeletonlabs/skeleton';
+	import type { ModalComponent } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
 	import { currentProfile, profiles } from '../../store/store';
@@ -15,7 +15,8 @@
 		const component: ModalComponent = { ref: ProfileDetails };
 		modalStore.trigger({
 			type: 'component',
-			component
+			component,
+			meta: profile
 		});
 	}
 
@@ -60,8 +61,3 @@
 		</div>
 	</div>
 </button>
-
-<div class="card p-4 w-72 shadow-xl" data-popup="popupFeatured">
-	<div><p>Demo Content</p></div>
-	<div class="arrow bg-surface-100-800-token" />
-</div>
