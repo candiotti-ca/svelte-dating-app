@@ -2,6 +2,7 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
 	import { ages, currentProfile } from '../../store/store';
+	import ProfilePicture from '../profile-picture/ProfilePicture.svelte';
 
 	const modalStore = getModalStore();
 	const profile: Profile = $modalStore[0].meta;
@@ -9,7 +10,11 @@
 </script>
 
 <div class="card min-w-[20vw] max-w-[20vw] min-h-[60vh]">
-	<header class="card-header rounded-t-3xl min-h-[20vh] {profile.bgColor.code}"></header>
+	<header
+		class="card-header rounded-t-3xl min-h-[25vh] bg-{profile.bgColor.code} pt-[5vh] pl-[7vw]"
+	>
+		<ProfilePicture {profile} />
+	</header>
 
 	<div class="p-4 space-y-4">
 		<div class="flex justify-between">
@@ -52,7 +57,7 @@
 				</span>
 
 				{#each profile.colors as color}
-					<span class="chip variant-filled-tertiary cursor-default">
+					<span class="chip variant-filled-tertiary cursor-default mr-1">
 						{color.name}
 					</span>
 				{/each}

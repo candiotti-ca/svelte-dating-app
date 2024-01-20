@@ -24,26 +24,21 @@
 	};
 </script>
 
-<div
-	style="clip-path: circle(50% at center);"
-	class="flex justify-center items-center h-[230px] w-[230px] bg-{profile.bgColor.code}"
->
-	<div id="sock">
-		<div class="body {profile.pattern.toLowerCase()}" style={sockBody()}>
-			<div class="band" style="background: {colorA}" />
-			<div class="heel" style="background: {colorA}" />
-			<div class="point" style="background: {colorA}" />
-		</div>
-		<div id="sock_outline" />
+<div id="sock">
+	<div class="body {profile.pattern.toLowerCase()}" style={sockBody()}>
+		<div class="band" style="background: {colorA}" />
+		<div class="heel" style="background: {colorA}" />
+		<div class="point" style="background: {colorA}" />
 	</div>
+	<div id="sock_outline" />
 </div>
 
 <style>
 	#sock {
 		/* Contient la chaussette et l'outline */
 		position: relative;
-		bottom: 80px;
-		right: 33px;
+		bottom: var(--bottom, 0px);
+		right: var(--right, 0px);
 	}
 
 	.body {

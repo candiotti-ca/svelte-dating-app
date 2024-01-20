@@ -4,6 +4,7 @@
 	import type { Profile } from '../../models/Profile';
 	import { currentProfile, profiles } from '../../store/store';
 	import ProfileDetails from '../profile-details/ProfileDetails.svelte';
+	import ProfilePicture from '../profile-picture/ProfilePicture.svelte';
 
 	const modalStore = getModalStore();
 	export let profile: Profile;
@@ -44,6 +45,10 @@
 			>
 				<i class="fa-solid fa-socks" />
 			</button>
+		</div>
+
+		<div class="flex justify-center items-center">
+			<ProfilePicture {profile} --bottom="85px" --right="45px" />
 		</div>
 
 		<div class="text-start">

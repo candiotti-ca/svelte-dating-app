@@ -20,7 +20,12 @@
 </script>
 
 <div class="flex flex-col items-center mb-10">
-	<ProfilePicture {profile} />
+	<div
+		style="clip-path: circle(50% at center);"
+		class="flex justify-center items-center h-[230px] w-[230px] bg-{profile.bgColor.code}"
+	>
+		<ProfilePicture {profile} --bottom="80px" --right="33px" />
+	</div>
 </div>
 
 <div class="flex space-x-10 justify-center mb-5">

@@ -19,10 +19,11 @@ export const patterns: Readable<Pattern[]> = readable([
 ]);
 
 export const colors: Readable<Color[]> = readable([
-    { name: 'Red', code: 'red' },
-    { name: 'Yellow', code: 'yellow' },
-    { name: 'Blue', code: 'blue' },
-    { name: 'Green', code: 'green' }
+    { name: 'Red', code: '#F06060' },
+    { name: 'Yellow', code: '#F3B562' },
+    { name: 'Blue', code: '#8CBEB2' },
+    { name: 'White', code: '#F2EBBF' },
+    { name: 'Gray', code: '#5C4B51' }
 ]);
 
 export const themeColors: Readable<Color[]> = readable([
@@ -41,7 +42,7 @@ const profileA: Profile = new Profile(
     "Je déteste les salles de bains, on finit toujours mouillé !",
     'Tiroir de gauche',
     37,
-    [],
+    [{ name: 'Red', code: '#F06060' }, { name: 'Yellow', code: '#F3B562' }],
     0,
     'Striped',
     [],
@@ -55,7 +56,7 @@ const profileB: Profile = new Profile(
     "Ma partenaire a été perdue dans une piscine à boules. Cela a été un terrible évènement pour moi, une disparition brutale! Peut-être qu'une bonne paire en laine me donnera du réconfort...",
     'Tiroir de droite',
     38,
-    [],
+    [{ name: 'Blue', code: '#8CBEB2' }, { name: 'White', code: '#F2EBBF' }],
     0,
     'Striped',
     [],
@@ -69,7 +70,7 @@ const profileC: Profile = new Profile(
     "J'ai perdu ma paire lors de mon passage dans la machine a laver. Je recherche celle qui m'accompagnera toute la vie",
     'Tiroir de gauche',
     38,
-    [],
+    [{ name: 'Gray', code: '#5C4B51' }, { name: 'Red', code: '#F06060' }],
     1,
     'Polka-Dot',
     [],
