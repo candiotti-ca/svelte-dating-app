@@ -8,7 +8,7 @@
 	$: age = $ages.find((a) => a.value == profile.age);
 </script>
 
-<div class="card min-w-[20vw] min-h-[60vh]">
+<div class="card min-w-[20vw] max-w-[20vw] min-h-[60vh]">
 	<header class="card-header rounded-t-3xl min-h-[20vh] {profile.bgColor.code}"></header>
 
 	<div class="p-4 space-y-4">

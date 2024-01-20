@@ -14,17 +14,15 @@ export const ages: Readable<Age[]> = readable([
 export const patterns: Readable<Pattern[]> = readable([
     { name: 'Striped' },
     { name: 'Plain' },
-    { name: 'Polka-dot' },
-    { name: 'Custom' },
-    { name: 'Chevron' },
-    { name: 'ZigZag' }
+    { name: 'Polka-Dot' },
+    { name: 'Chevron' }
 ]);
 
 export const colors: Readable<Color[]> = readable([
-    { name: 'Red', code: '#F00' },
-    { name: 'Yellow', code: '#0FF' },
-    { name: 'Blue', code: '#00F' },
-    { name: 'Green', code: '#0F0' }
+    { name: 'Red', code: 'red' },
+    { name: 'Yellow', code: 'yellow' },
+    { name: 'Blue', code: 'blue' },
+    { name: 'Green', code: 'green' }
 ]);
 
 export const themeColors: Readable<Color[]> = readable([
@@ -40,7 +38,7 @@ const profileA: Profile = new Profile(
     '1',
     'John',
     'Doe',
-    "J'ai perdu ma partenaire lors de mon passage dans la machine a laver. Je cherche ma paire pour la vie",
+    "Je déteste les salles de bains, on finit toujours mouillé !",
     'Tiroir de gauche',
     37,
     [],
@@ -54,7 +52,7 @@ const profileB: Profile = new Profile(
     '2',
     'Joe',
     'Doe',
-    "",
+    "Ma partenaire a été perdue dans une piscine à boules. Cela a été un terrible évènement pour moi, une disparition brutale! Peut-être qu'une bonne paire en laine me donnera du réconfort...",
     'Tiroir de droite',
     38,
     [],
@@ -68,7 +66,7 @@ const profileC: Profile = new Profile(
     '3',
     'Doe',
     'Doe',
-    "",
+    "J'ai perdu ma paire lors de mon passage dans la machine a laver. Je recherche celle qui m'accompagnera toute la vie",
     'Tiroir de gauche',
     38,
     [],
@@ -80,6 +78,7 @@ const profileC: Profile = new Profile(
 
 export interface WritableProfiles extends Readable<Profile[]> {
     updatePairsOfProfile(toUpdate: Profile): void;
+    updateProfile(toUpdate: Profile): void;
 }
 function createProfiles(initialValue: Profile[]): WritableProfiles {
     const { subscribe, update }: Writable<Profile[]> = writable(initialValue);
@@ -90,6 +89,22 @@ function createProfiles(initialValue: Profile[]): WritableProfiles {
             const found = profiles.find(p => p.id == toUpdate.id);
             if (found) {
                 found.favoriteProfiles = toUpdate.favoriteProfiles;
+            }
+
+            return profiles;
+        }),
+        updateProfile: (toUpdate: Profile) => update(profiles => {
+            const found = profiles.find(p => p.id == toUpdate.id);
+            if (found) {
+                found.firstname = toUpdate.firstname;
+                found.lastname = toUpdate.lastname;
+                found.age = toUpdate.age;
+                found.city = toUpdate.city;
+                found.abstract = toUpdate.abstract;
+                found.size = toUpdate.size;
+                found.pattern = toUpdate.pattern;
+                found.colors = toUpdate.colors;
+                found.bgColor = toUpdate.bgColor;
             }
 
             return profiles;
