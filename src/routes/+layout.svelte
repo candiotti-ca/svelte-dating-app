@@ -25,7 +25,7 @@
 				<strong class="text-xl uppercase">Sock Dating App</strong>
 			</svelte:fragment>
 
-			<!-- <SearchBar /> -->
+			<SearchBar />
 		</AppBar>
 	</svelte:fragment>
 

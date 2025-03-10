@@ -1,5 +1,7 @@
 import type { Color } from "./Color";
 
+export type ProfileParams = { id: string, firstname: string, lastname: string, abstract: string, city: string, size: number, colors: Color[], age: number, pattern: string, favoriteProfiles: string[] };
+
 export class Profile {
     id: string;
     firstname: string;
@@ -12,7 +14,7 @@ export class Profile {
     pattern: string;
     favoriteProfiles: string[];
 
-    constructor(id: string, firstname: string = '', lastname: string = '', abstract: string = '', city: string = '', size: number = 37, colors: Color[] = [], age: number = 0, pattern: string = '', favoriteProfiles: string[], bgColor: Color) {
+    constructor({ id, firstname, lastname, abstract, age, city, size, colors, pattern, favoriteProfiles }: ProfileParams) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;

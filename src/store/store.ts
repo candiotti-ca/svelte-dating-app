@@ -26,47 +26,44 @@ export const colors: Readable<Color[]> = readable([
     { name: 'Gray', code: '#5C4B51' }
 ]);
 
-const profileA: Profile = new Profile(
-    '1',
-    'John',
-    'Doe',
-    "Je déteste les salles de bains, on finit toujours mouillé !",
-    'Tiroir de gauche',
-    37,
-    [{ name: 'Red', code: '#F06060' }, { name: 'Yellow', code: '#F3B562' }],
-    3,
-    'Striped',
-    [],
-    { name: 'Success', code: 'success-500' }
-);
+const profileA: Profile = new Profile({
+    id: '1',
+    lastname: 'John',
+    firstname: 'Doe',
+    abstract: "Je déteste les salles de bains, on finit toujours mouillé !",
+    city: 'Tiroir de gauche',
+    size: 37,
+    colors: [{ name: 'Red', code: '#F06060' }, { name: 'Yellow', code: '#F3B562' }],
+    age: 3,
+    pattern: 'Striped',
+    favoriteProfiles: []
+});
 
-const profileB: Profile = new Profile(
-    '2',
-    'Joe',
-    'Doe',
-    "Ma partenaire a été perdue dans une piscine à boules. Cela a été un terrible évènement pour moi, une disparition brutale! Peut-être qu'une bonne paire en laine me donnera du réconfort...",
-    'Tiroir de droite',
-    38,
-    [{ name: 'Blue', code: '#8CBEB2' }, { name: 'White', code: '#F2EBBF' }],
-    0,
-    'Striped',
-    [],
-    { name: 'Secondary', code: 'secondary-500' }
-);
+const profileB: Profile = new Profile({
+    id: '2',
+    firstname: 'Joe',
+    lastname: 'Doe',
+    abstract: "Ma partenaire a été perdue dans une piscine à boules. Cela a été un terrible évènement pour moi, une disparition brutale! Peut-être qu'une bonne paire en laine me donnera du réconfort...",
+    city: 'Tiroir de droite',
+    size: 38,
+    colors: [{ name: 'Blue', code: '#8CBEB2' }, { name: 'White', code: '#F2EBBF' }],
+    age: 0,
+    pattern: 'Striped',
+    favoriteProfiles: []
+});
 
-const profileC: Profile = new Profile(
-    '3',
-    'Doe',
-    'Doe',
-    "J'ai perdu ma paire lors de mon passage dans la machine a laver. Je recherche celle qui m'accompagnera toute la vie",
-    'Tiroir de gauche',
-    38,
-    [{ name: 'Gray', code: '#5C4B51' }, { name: 'Red', code: '#F06060' }],
-    1,
-    'Polka-Dot',
-    [],
-    { name: 'Tertiary', code: 'tertiary-500' }
-);
+const profileC: Profile = new Profile({
+    id: '3',
+    firstname: 'Doe',
+    lastname: 'Doe',
+    abstract: "J'ai perdu ma paire lors de mon passage dans la machine a laver. Je recherche celle qui m'accompagnera toute la vie",
+    city: 'Tiroir de gauche',
+    size: 38,
+    colors: [{ name: 'Gray', code: '#5C4B51' }, { name: 'Red', code: '#F06060' }],
+    age: 1,
+    pattern: 'Polka-Dot',
+    favoriteProfiles: []
+});
 
 export interface WritableProfiles extends Readable<Profile[]> {
     updatePairsOfProfile(toUpdate: Profile): void;
