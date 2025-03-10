@@ -33,7 +33,7 @@
 	}
 </script>
 
-<button class="card card-hover" on:click={showDetails} data-testid="profile-preview">
+<article class="card card-hover cursor-pointer" on:click={showDetails} data-testid="profile-preview">
 	<div class="p-4 w-[20vw] h-[40vh] flex flex-col justify-between">
 		<div class="flex justify-end">
 			<button
@@ -60,4 +60,4 @@
 			</p>
 		</div>
 	</div>
-</button>
+</article>
