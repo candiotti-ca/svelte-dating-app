@@ -9,7 +9,6 @@ export class Profile {
     city: string;
     size: number;
     colors: Color[];
-    bgColor: Color;
     pattern: string;
     favoriteProfiles: string[];
 
@@ -24,7 +23,6 @@ export class Profile {
         this.colors = colors;
         this.pattern = pattern;
         this.favoriteProfiles = favoriteProfiles;
-        this.bgColor = bgColor;
     }
 
     public similarityRate(that: Profile): number {
@@ -56,5 +54,25 @@ export class Profile {
         const rate = this.similarityRate(that);
         const rounded = Math.round(rate * 100);
         return rounded + '%';
+    }
+
+    public isHoled(): boolean {
+        return this.age == 3;
+    }
+
+    public getAge(): string {
+        if (this.age == 0) {
+            return 'new';
+        }
+
+        if (this.age == 1) {
+            return 'used';
+        }
+
+        if (this.age == 2) {
+            return 'aged';
+        }
+
+        return 'holed';
     }
 }

@@ -2,7 +2,7 @@
 	import { onDestroy } from 'svelte';
 	import ProfilePicture from '../../components/profile-picture/ProfilePicture.svelte';
 	import type { Color } from '../../models/Color';
-	import { ages, colors, currentProfile, patterns, profiles, themeColors } from '../../store/store';
+	import { ages, colors, currentProfile, patterns, profiles } from '../../store/store';
 
 	let profile = $currentProfile;
 
@@ -22,7 +22,7 @@
 <div class="flex flex-col items-center mb-10">
 	<div
 		style="clip-path: circle(50% at center);"
-		class="flex justify-center items-center h-[230px] w-[230px] bg-{profile.bgColor.code}"
+		class="flex justify-center items-center h-[230px] w-[230px] bg-surface-500"
 	>
 		<ProfilePicture {profile} --bottom="80px" --right="33px" />
 	</div>
@@ -101,17 +101,4 @@
 			{/each}
 		</div>
 	</label>
-</div>
-
-<div class="flex space-x-10 justify-center">
-	<label class="label w-[19vw]">
-		<span>Background picture color</span>
-		<select class="select" bind:value={profile.bgColor}>
-			{#each $themeColors as color}
-				<option value={color}>{color.name}</option>
-			{/each}
-		</select>
-	</label>
-
-	<div class="w-[19vw]" />
 </div>

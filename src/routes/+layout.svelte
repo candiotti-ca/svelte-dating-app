@@ -20,17 +20,17 @@
 <Modal />
 <AppShell>
 	<svelte:fragment slot="header">
-		<AppBar slotDefault="place-self-center">
+		<AppBar slotDefault="place-self-center" background="bg-surface-500">
 			<svelte:fragment slot="lead">
 				<strong class="text-xl uppercase">Sock Dating App</strong>
 			</svelte:fragment>
 
-			<SearchBar />
+			<!-- <SearchBar /> -->
 		</AppBar>
 	</svelte:fragment>
 
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail>
+		<AppRail background="bg-surface-500">
 			<AppRailAnchor href="/explore" selected={$page.url.pathname === '/explore'}>
 				<svelte:fragment slot="lead"><i class="fa-solid fa-magnifying-glass" /></svelte:fragment>
 				<span>Explore</span>

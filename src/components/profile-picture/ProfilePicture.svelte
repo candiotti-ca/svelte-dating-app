@@ -25,12 +25,15 @@
 </script>
 
 <div id="sock">
-	<div class="body {profile.pattern.toLowerCase()}" style={sockBody()}>
+	<div
+		class="body{profile.isHoled() ? '-holed' : ''} {profile.pattern.toLowerCase()}"
+		style={sockBody()}
+	>
 		<div class="band" style="background: {colorA}" />
-		<div class="heel" style="background: {colorA}" />
-		<div class="point" style="background: {colorA}" />
+		<div class="heel{profile.isHoled() ? '-holed' : ''}" style="background: {colorA}" />
+		<div class="point{profile.isHoled() ? '-holed' : ''}" style="background: {colorA}" />
 	</div>
-	<div id="sock_outline" />
+	<div id="sock_{profile.getAge()}_outline" />
 </div>
 
 <style>
@@ -45,6 +48,14 @@
 		/* Utilise comme masque l'entiereté de la chaussette. Permet de set la couleur du "body" */
 		position: absolute;
 		mask-image: url(/src/assets/sock_fill.svg);
+		width: 96px;
+		height: 161px;
+	}
+
+	.body-holed {
+		/* Utilise comme masque l'entiereté de la chaussette. Permet de set la couleur du "body" */
+		position: absolute;
+		mask-image: url(/src/assets/sock_fill_holed.svg);
 		width: 96px;
 		height: 161px;
 	}
@@ -65,6 +76,15 @@
 		position: absolute;
 	}
 
+	.heel-holed {
+		/* Talon */
+		mask-image: url(/src/assets/heel_holed.svg);
+		height: 37px;
+		width: 32px;
+		top: 80px;
+		position: absolute;
+	}
+
 	.point {
 		/* Pointe */
 		mask-image: url(/src/assets/point.svg);
@@ -75,10 +95,47 @@
 		position: absolute;
 	}
 
-	#sock_outline {
+	.point-holed {
+		/* Pointe */
+		mask-image: url(/src/assets/point_holed.svg);
+		height: 30px;
+		width: 30px;
+		top: 127px;
+		right: 4px;
+		position: absolute;
+	}
+
+	#sock_new_outline {
 		/* Div placée de maniere absolute sur l'autre, doit absolument être en dernier pour passer au dessus. Utilise un SVG de la chaussette avec juste les contours, de cette manière on peut changer la couleur des contours si on le souhaite */
 		position: absolute;
 		mask-image: url(/src/assets/sock.svg);
+		width: 96px;
+		height: 161px;
+		background: black;
+	}
+
+	#sock_used_outline {
+		/* Div placée de maniere absolute sur l'autre, doit absolument être en dernier pour passer au dessus. Utilise un SVG de la chaussette avec juste les contours, de cette manière on peut changer la couleur des contours si on le souhaite */
+		position: absolute;
+		mask-image: url(/src/assets/sock_used.svg);
+		width: 96px;
+		height: 161px;
+		background: black;
+	}
+
+	#sock_aged_outline {
+		/* Div placée de maniere absolute sur l'autre, doit absolument être en dernier pour passer au dessus. Utilise un SVG de la chaussette avec juste les contours, de cette manière on peut changer la couleur des contours si on le souhaite */
+		position: absolute;
+		mask-image: url(/src/assets/sock_aged.svg);
+		width: 96px;
+		height: 161px;
+		background: black;
+	}
+
+	#sock_holed_outline {
+		/* Div placée de maniere absolute sur l'autre, doit absolument être en dernier pour passer au dessus. Utilise un SVG de la chaussette avec juste les contours, de cette manière on peut changer la couleur des contours si on le souhaite */
+		position: absolute;
+		mask-image: url(/src/assets/sock_holed.svg);
 		width: 96px;
 		height: 161px;
 		background: black;

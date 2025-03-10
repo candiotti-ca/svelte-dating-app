@@ -19,20 +19,11 @@ export const patterns: Readable<Pattern[]> = readable([
 ]);
 
 export const colors: Readable<Color[]> = readable([
-    { name: 'Red', code: '#F06060' },
-    { name: 'Yellow', code: '#F3B562' },
-    { name: 'Blue', code: '#8CBEB2' },
-    { name: 'White', code: '#F2EBBF' },
+    { name: 'Red', code: '#F06060' },//#F26469 red
+    { name: 'Yellow', code: '#F3B562' },//#9085BA purple
+    { name: 'Blue', code: '#8CBEB2' }, //#3B889A blue
+    { name: 'White', code: '#F2EBBF' },//#76B479 green
     { name: 'Gray', code: '#5C4B51' }
-]);
-
-export const themeColors: Readable<Color[]> = readable([
-    { name: 'Secondary', code: 'secondary-500' },
-    { name: 'Tertiary', code: 'tertiary-500' },
-    { name: 'Success', code: 'success-500' },
-    { name: 'Warning', code: 'warning-500' },
-    { name: 'Error', code: 'error-500' },
-    { name: 'Surface', code: 'surface-500' }
 ]);
 
 const profileA: Profile = new Profile(
@@ -43,7 +34,7 @@ const profileA: Profile = new Profile(
     'Tiroir de gauche',
     37,
     [{ name: 'Red', code: '#F06060' }, { name: 'Yellow', code: '#F3B562' }],
-    0,
+    3,
     'Striped',
     [],
     { name: 'Success', code: 'success-500' }
@@ -105,7 +96,6 @@ function createProfiles(initialValue: Profile[]): WritableProfiles {
                 found.size = toUpdate.size;
                 found.pattern = toUpdate.pattern;
                 found.colors = toUpdate.colors;
-                found.bgColor = toUpdate.bgColor;
             }
 
             return profiles;

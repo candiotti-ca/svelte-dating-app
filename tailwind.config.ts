@@ -5,6 +5,7 @@ import { join } from 'path';
 import type { Config } from 'tailwindcss';
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 import plugin from 'tailwindcss/plugin';
+import { sockTheme } from './sock-theme'
 
 export default {
 	darkMode: 'class',
@@ -17,12 +18,7 @@ export default {
 		typography,
 		skeleton({
 			themes: {
-				preset: [
-					{
-						name: 'modern',
-						enhancements: true,
-					}
-				]
+				custom: [sockTheme]
 			}
 		}),
 		plugin(({ matchUtilities, theme }) => {

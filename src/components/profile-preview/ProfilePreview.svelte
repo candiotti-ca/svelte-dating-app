@@ -8,7 +8,6 @@
 
 	const modalStore = getModalStore();
 	export let profile: Profile;
-	const bgColor = `bg-shadow-${profile.bgColor.code}/100`;
 	let loggedInProfile: Profile = $currentProfile;
 	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
 
@@ -34,14 +33,14 @@
 	}
 </script>
 
-<button class="card card-hover {bgColor}" on:click={showDetails} data-testid="profile-preview">
-	<div class="p-4 w-[15vw] h-[40vh] overflow-scroll flex flex-col justify-between">
+<button class="card card-hover" on:click={showDetails} data-testid="profile-preview">
+	<div class="p-4 w-[20vw] h-[40vh] flex flex-col justify-between">
 		<div class="flex justify-end">
 			<button
 				data-testid="pair-sock"
 				title="Make a pair!"
 				on:click={togglePairing}
-				class="btn-icon variant-filled{indexInFavorites > -1 ? '-primary' : ''}"
+				class="btn-icon variant-filled{indexInFavorites > -1 ? '-primary' : ''} text-white"
 			>
 				<i class="fa-solid fa-socks" />
 			</button>
@@ -52,11 +51,11 @@
 		</div>
 
 		<div class="text-start">
-			<h2 class="h2 text-white">
+			<h2 class="h2">
 				{profile.firstname}
 				{profile.lastname?.charAt(0)?.toUpperCase()}.
 			</h2>
-			<p class="font-light text-white">
+			<p class="font-light">
 				{$currentProfile.formattedSimilarityRate(profile)} similar
 			</p>
 		</div>
