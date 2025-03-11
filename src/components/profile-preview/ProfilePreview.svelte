@@ -8,7 +8,7 @@
 
 	const modalStore = getModalStore();
 	export let profile: Profile;
-	let loggedInProfile: Profile = $currentProfile;
+	let loggedInProfile: Profile = $currentProfile!;
 	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
 
 	function showDetails(): void {
@@ -29,11 +29,15 @@
 			loggedInProfile.favoriteProfiles.push(profile.id);
 		}
 
-		profiles.updatePairsOfProfile(loggedInProfile);
+		//TODOprofiles.updatePairsOfProfile(loggedInProfile);
 	}
 </script>
 
-<article class="card card-hover cursor-pointer" on:click={showDetails} data-testid="profile-preview">
+<article
+	class="card card-hover cursor-pointer"
+	on:click={showDetails}
+	data-testid="profile-preview"
+>
 	<div class="p-4 w-[20vw] h-[40vh] flex flex-col justify-between">
 		<div class="flex justify-end">
 			<button
@@ -56,7 +60,7 @@
 				{profile.lastname?.charAt(0)?.toUpperCase()}.
 			</h2>
 			<p class="font-light">
-				{$currentProfile.formattedSimilarityRate(profile)} similar
+				{loggedInProfile.formattedSimilarityRate(profile)} similar
 			</p>
 		</div>
 	</div>

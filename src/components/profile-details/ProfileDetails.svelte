@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
-	import { ages, currentProfile, profiles } from '../../store/store';
+	import { ages, currentProfile } from '../../store/store';
 	import ProfilePicture from '../profile-picture/ProfilePicture.svelte';
 
 	const modalStore = getModalStore();
 	const profile: Profile = $modalStore[0].meta;
 	$: age = $ages.find((a) => a.value == profile.age);
-	let loggedInProfile: Profile = $currentProfile;
+	let loggedInProfile: Profile = $currentProfile!;
 	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
 
 	function togglePairing(event: Event): void {
@@ -19,7 +19,7 @@
 			loggedInProfile.favoriteProfiles.push(profile.id);
 		}
 
-		profiles.updatePairsOfProfile(loggedInProfile);
+		//TODOprofiles.updatePairsOfProfile(loggedInProfile);
 		modalStore.close();
 	}
 </script>
@@ -36,7 +36,7 @@
 				{profile.lastname}
 			</h2>
 			<span class="chip variant-filled-tertiary text-white cursor-default">
-				{$currentProfile.formattedSimilarityRate(profile)} similar
+				{loggedInProfile.formattedSimilarityRate(profile)} similar
 			</span>
 		</div>
 

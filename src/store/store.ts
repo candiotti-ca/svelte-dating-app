@@ -3,6 +3,7 @@ import type { Age } from "../models/Age";
 import type { Color } from "../models/Color";
 import type { Pattern } from "../models/Pattern";
 import { Profile } from "../models/Profile";
+import type { SearchProfiles } from "../models/SearchProfiles";
 
 export const ages: Readable<Age[]> = readable([
     { value: 0, description: "Brand new!" },
@@ -100,14 +101,13 @@ function createProfiles(initialValue: Profile[]): WritableProfiles {
     };
 }
 
-export const profiles: WritableProfiles = createProfiles([
-    profileA, profileB, profileC
-]);
-
 export const currentProfile: Writable<Profile | null> = writable(null);
+
+export const searchProfiles: Writable<SearchProfiles> = writable({});
+export const profiles: Readable<Profile[]> = derived(searchProfiles, ($searchProfiles, set) => {
+    Promise.resolve([profileB, profileC]).then(result => set(result));
+}, [] as Profile[]);
+
 export const pairsOfCurrentProfile: Readable<Profile[]> = derived([currentProfile, profiles], ([currentProfile, profiles]) => {
     return profiles.filter(profile => currentProfile?.favoriteProfiles.includes(profile.id));
-});
-export const profilesToExplore: Readable<Profile[]> = derived([currentProfile, profiles], ([currentProfile, profiles]) => {
-    return profiles.filter(profile => currentProfile?.id != profile.id);
 });

@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
-import { pairsOfCurrentProfile, profilesToExplore } from '../src/store/store';
+import { pairsOfCurrentProfile, profiles } from '../src/store/store';
 import { get } from 'svelte/store';
 
 test.describe('EXPLORE page', () => {
 	test('should show as many cards as number of profiles to explore in the store', async ({ page }) => {
 		await page.goto('/explore');
 
-		const count = get(profilesToExplore);
+		const count = get(profiles);
 		await expect(page.getByTestId('profile-preview').count()).toEqual(count);
 	});
 

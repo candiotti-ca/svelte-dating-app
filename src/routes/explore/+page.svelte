@@ -1,18 +1,17 @@
 <script lang="ts">
 	import ProfilePreview from '../../components/profile-preview/ProfilePreview.svelte';
-	import { profilesToExplore } from '../../store/store';
-	
+	import { profiles } from '../../store/store';
+
 	function displayFilters(): void {
 		console.log('display filters');
 	}
 </script>
 
 <div class="flex space-x-4">
-	
-	<button  on:click={displayFilters}>
+	<button on:click={displayFilters}>
 		<i class="fa fa-filter" />
 	</button>
-	
+
 	<label class="label">
 		<span>Sort</span>
 		<select class="select">
@@ -23,8 +22,8 @@
 			<option value="5">Option 5</option>
 		</select>
 	</label>
-	
-	{#each $profilesToExplore as profile}
+
+	{#each $profiles as profile}
 		<ProfilePreview {profile} />
 	{/each}
 </div>
