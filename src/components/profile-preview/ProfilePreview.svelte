@@ -2,14 +2,18 @@
 	import type { ModalComponent } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
-	import { currentProfile, profiles } from '../../store/store';
+	import { ProfilesService } from '../../services/profiles.service';
+	import { currentProfile } from '../../store/store';
 	import ProfileDetails from '../profile-details/ProfileDetails.svelte';
 	import ProfilePicture from '../profile-picture/ProfilePicture.svelte';
 
 	const modalStore = getModalStore();
-	export let profile: Profile;
-	let loggedInProfile: Profile = $currentProfile!;
-	$: indexInFavorites = loggedInProfile.favoriteProfiles.indexOf(profile.id);
+
+	/* the socket that is currently displayed. Not the current profile. */
+	const { profile }: { profile: Profile } = $props();
+
+	const loggedInProfile: Profile = $currentProfile!;
+	let indexInFavorites = $derived(loggedInProfile.favoriteProfiles.indexOf(profile.id));
 
 	function showDetails(): void {
 		const component: ModalComponent = { ref: ProfileDetails };
@@ -29,7 +33,10 @@
 			loggedInProfile.favoriteProfiles.push(profile.id);
 		}
 
-		//TODOprofiles.updatePairsOfProfile(loggedInProfile);
+		ProfilesService.updateCurrentProfile({
+			favoriteProfiles: loggedInProfile.favoriteProfiles
+		}).then((updated) => currentProfile.set(updated));
+		//TODO fix reactivity
 	}
 </script>
 

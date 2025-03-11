@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { Profile } from '../../models/Profile';
+	import { ProfilesService } from '../../services/profiles.service';
 	import { ages, currentProfile } from '../../store/store';
 	import ProfilePicture from '../profile-picture/ProfilePicture.svelte';
 
@@ -19,7 +20,9 @@
 			loggedInProfile.favoriteProfiles.push(profile.id);
 		}
 
-		//TODOprofiles.updatePairsOfProfile(loggedInProfile);
+		ProfilesService.updateCurrentProfile({
+			favoriteProfiles: loggedInProfile.favoriteProfiles
+		}).then((updated) => currentProfile.set(updated));
 		modalStore.close();
 	}
 </script>

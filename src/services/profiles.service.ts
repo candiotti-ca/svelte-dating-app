@@ -8,7 +8,7 @@ export class ProfilesService {
             .then((profile: ProfileParams) => new Profile(profile));
     }
 
-    static updateCurrentProfile(update: ProfileParams): Promise<Profile> {
+    static updateCurrentProfile(update: Partial<ProfileParams>): Promise<Profile> {
         return fetch('/profile', { body: JSON.stringify(update), method: 'PATCH' })
             .then((response: Response) => response.json())
             .then((profile: ProfileParams) => new Profile(profile));
