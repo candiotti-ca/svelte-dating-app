@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
 	import {
 		AppBar,
@@ -31,17 +31,17 @@
 
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail background="bg-surface-500">
-			<AppRailAnchor href="/explore" selected={$page.url.pathname === '/explore'}>
+			<AppRailAnchor href="/explore" selected={page.url.pathname === '/explore'}>
 				<svelte:fragment slot="lead"><i class="fa-solid fa-magnifying-glass" /></svelte:fragment>
 				<span>Explore</span>
 			</AppRailAnchor>
 
-			<AppRailAnchor href="/pairs" selected={$page.url.pathname === '/pairs'}>
+			<AppRailAnchor href="/pairs" selected={page.url.pathname === '/pairs'}>
 				<svelte:fragment slot="lead"><i class="fa-solid fa-socks" /></svelte:fragment>
 				<span>Pairs</span>
 			</AppRailAnchor>
 
-			<AppRailAnchor href="/profile" selected={$page.url.pathname === '/profile'}>
+			<AppRailAnchor href="/profile" selected={page.url.pathname === '/profile'}>
 				<svelte:fragment slot="lead"><i class="fa-solid fa-user" /></svelte:fragment>
 				<span>Profile</span>
 			</AppRailAnchor>
