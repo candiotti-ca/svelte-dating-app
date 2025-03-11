@@ -1,5 +1,7 @@
+import type { ProfileParams } from "./Profile";
+
 export type SearchProfiles = {
     firstname?: string;
-    sortDirection?: string;
-    sortField?: string;
+    sortDirection?: 'asc' | 'desc';
+    sortField?: keyof ProfileParams;
 };

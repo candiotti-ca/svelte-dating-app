@@ -36,5 +36,5 @@ export const profiles: Readable<Profile[]> = derived(searchProfiles, ($searchPro
 }, [] as Profile[]);
 
 export const pairsOfCurrentProfile: Readable<Profile[]> = derived([currentProfile, profiles], ([currentProfile, profiles]) => {
-    return profiles.filter(profile => currentProfile?.favoriteProfiles.includes(profile.id));
+    return profiles.filter(profile => currentProfile?.favoriteProfiles.includes(profile.id) ?? []);
 });

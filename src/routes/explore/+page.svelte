@@ -1,28 +1,40 @@
 <script lang="ts">
 	import ProfilePreview from '../../components/profile-preview/ProfilePreview.svelte';
-	import { profiles } from '../../store/store';
+	import type { SearchProfiles } from '../../models/SearchProfiles';
+	import { profiles, searchProfiles } from '../../store/store';
+
+	let areFiltersVisible = $state(false);
+	let sortPreference = $state<{ value: SearchProfiles }>({ value: {} });
+	const sortOptions = [
+		{ value: { sortDirection: 'asc', sortField: 'age' }, label: 'By age asc' },
+		{ value: { sortDirection: 'desc', sortField: 'age' }, label: 'By age desc' }
+	];
 
 	function displayFilters(): void {
-		console.log('display filters');
+		areFiltersVisible = !areFiltersVisible;
+	}
+
+	function refreshProfiles(): void {
+		searchProfiles.update((search) => ({ ...search, ...sortPreference.value }));
 	}
 </script>
 
-<div class="flex space-x-4">
-	<button on:click={displayFilters}>
-		<i class="fa fa-filter" />
-	</button>
+<button onclick={() => displayFilters()}>
+	<i class="fa fa-filter" />
+</button>
 
+{#if areFiltersVisible}
 	<label class="label">
 		<span>Sort</span>
-		<select class="select">
-			<option value="1">Option 1</option>
-			<option value="2">Option 2</option>
-			<option value="3">Option 3</option>
-			<option value="4">Option 4</option>
-			<option value="5">Option 5</option>
+		<select class="select" bind:value={sortPreference} onchange={refreshProfiles}>
+			{#each sortOptions as option}
+				<option value={option.value}>{option.label}</option>
+			{/each}
 		</select>
 	</label>
+{/if}
 
+<div class="flex space-x-4">
 	{#each $profiles as profile}
 		<ProfilePreview {profile} />
 	{/each}
