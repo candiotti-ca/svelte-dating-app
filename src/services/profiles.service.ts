@@ -15,7 +15,15 @@ export class ProfilesService {
     }
 
     static searchProfiles(params: SearchProfiles): Promise<Profile[]> {
-        const queryParams = Object.entries(params).map(([key, value]) => `${key}=${value}`).join('&');
+        const queryParams = Object.entries(params)
+            .map(([key, value]) => {
+                if (value instanceof Array) {
+                    return value.map(v => `${key}=${v}`).join('&');
+                }
+                return `${key}=${value}`;
+            })
+            .join('&');
+
         const query = `/explore${params ? '?' : ''}${queryParams}`;
 
         return fetch(query)
