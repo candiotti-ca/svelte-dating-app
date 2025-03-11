@@ -104,10 +104,10 @@ export const profiles: WritableProfiles = createProfiles([
     profileA, profileB, profileC
 ]);
 
-export const currentProfile: Writable<Profile> = writable(profileA);
+export const currentProfile: Writable<Profile | null> = writable(null);
 export const pairsOfCurrentProfile: Readable<Profile[]> = derived([currentProfile, profiles], ([currentProfile, profiles]) => {
-    return profiles.filter(profile => currentProfile.favoriteProfiles.includes(profile.id));
+    return profiles.filter(profile => currentProfile?.favoriteProfiles.includes(profile.id));
 });
 export const profilesToExplore: Readable<Profile[]> = derived([currentProfile, profiles], ([currentProfile, profiles]) => {
-    return profiles.filter(profile => currentProfile.id != profile.id);
+    return profiles.filter(profile => currentProfile?.id != profile.id);
 });
