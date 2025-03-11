@@ -1,8 +1,7 @@
-import { Profile, type ProfileParams } from "../models/Profile";
+import { ProfilesService } from "../services/profiles.service";
 import { currentProfile } from "../store/store";
-import { doFetch } from "../utils/utils";
 
 export async function load(loadEvent: any) {
-    return await doFetch<ProfileParams>('/profile', loadEvent.fetch)
-        .then(profile => currentProfile.set(new Profile(profile)));
+    return await ProfilesService.getCurrentProfile(loadEvent.fetch)
+        .then(profile => currentProfile.set(profile));
 }
