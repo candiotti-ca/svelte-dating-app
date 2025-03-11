@@ -4,7 +4,7 @@
 	import type { Color } from '../../models/Color';
 	import { ages, colors, currentProfile, patterns, profiles } from '../../store/store';
 
-	let profile = $currentProfile;
+	let profile = $currentProfile!;
 
 	function toggleColor(color: Color): void {
 		const index = profile.colors.indexOf(color);
@@ -16,7 +16,7 @@
 		profile.colors = [...profile.colors];
 	}
 
-	onDestroy(() => profiles.updateProfile(profile));
+	//TODOonDestroy(() => profiles.updateProfile(profile));
 </script>
 
 <div class="flex flex-col items-center mb-10">
