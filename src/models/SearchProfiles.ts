@@ -5,4 +5,5 @@ export type SearchProfiles = {
     sortDirection?: 'asc' | 'desc';
     sortField?: keyof ProfileParams;
     colors?: string[];
+    pattern?: string;
 };

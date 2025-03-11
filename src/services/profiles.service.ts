@@ -16,6 +16,7 @@ export class ProfilesService {
 
     static searchProfiles(params: SearchProfiles): Promise<Profile[]> {
         const queryParams = Object.entries(params)
+            .filter(([_, value]) => value)
             .map(([key, value]) => {
                 if (value instanceof Array) {
                     return value.map(v => `${key}=${v}`).join('&');
