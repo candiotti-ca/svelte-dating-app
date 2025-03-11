@@ -8,7 +8,8 @@ const profileA: ProfileParams = {
     abstract: "Je déteste les salles de bains, on finit toujours mouillé !",
     city: 'Tiroir de gauche',
     size: 37,
-    colors: [{ name: 'Red', code: '#F06060' }, { name: 'Yellow', code: '#F3B562' }],
+    bandColor: 1,
+    bodyColor: 2,
     age: 3,
     pattern: 'Striped',
     favoriteProfiles: []

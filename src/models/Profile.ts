@@ -1,6 +1,17 @@
-import type { Color } from "./Color";
 
-export type ProfileParams = { id: string, firstname: string, lastname: string, abstract?: string, city: string, size: number, colors: Color[], age: number, pattern: string, favoriteProfiles: string[] };
+export type ProfileParams = {
+    id: string;
+    firstname: string;
+    lastname: string;
+    abstract?: string;
+    city: string;
+    size: number;
+    bandColor: number;
+    bodyColor: number;
+    age: number;
+    pattern: string;
+    favoriteProfiles: string[];
+};
 
 export class Profile {
     id: string;
@@ -10,11 +21,12 @@ export class Profile {
     abstract?: string;
     city: string;
     size: number;
-    colors: Color[];
+    bandColor: number;
+    bodyColor: number;
     pattern: string;
     favoriteProfiles: string[];
 
-    constructor({ id, firstname, lastname, abstract, age, city, size, colors, pattern, favoriteProfiles }: ProfileParams) {
+    constructor({ id, firstname, lastname, abstract, age, city, size, bandColor, bodyColor, pattern, favoriteProfiles }: ProfileParams) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -22,14 +34,15 @@ export class Profile {
         this.age = age;
         this.city = city;
         this.size = size;
-        this.colors = colors;
+        this.bandColor = bandColor;
+        this.bodyColor = bodyColor;
         this.pattern = pattern;
         this.favoriteProfiles = favoriteProfiles;
     }
 
     public similarityRate(that: Profile): number {
         let similarity = 0;
-        const total = this.colors.length + 3;
+        const total = 5;
 
         if (this.age == that.age) {
             similarity++;
@@ -43,10 +56,12 @@ export class Profile {
             similarity++;
         }
 
-        if (this.colors.length > 0) {
-            this.colors
-                .filter(color => that.colors.includes(color))
-                .forEach(() => similarity++);
+        if (this.bandColor == that.bandColor) {
+            similarity++;
+        }
+
+        if (this.bodyColor == that.bodyColor) {
+            similarity++;
         }
 
         return similarity / total;

@@ -7,7 +7,8 @@ const profileB: ProfileParams = {
     abstract: "Ma partenaire a été perdue dans une piscine à boules. Cela a été un terrible évènement pour moi, une disparition brutale! Peut-être qu'une bonne paire en laine me donnera du réconfort...",
     city: 'Tiroir de droite',
     size: 38,
-    colors: [{ name: 'Blue', code: '#8CBEB2' }, { name: 'White', code: '#F2EBBF' }],
+    bandColor: 3,
+    bodyColor: 4,
     age: 0,
     pattern: 'Striped',
     favoriteProfiles: []
@@ -20,7 +21,8 @@ const profileC: ProfileParams = {
     abstract: "J'ai perdu ma paire lors de mon passage dans la machine a laver. Je recherche celle qui m'accompagnera toute la vie",
     city: 'Tiroir de gauche',
     size: 38,
-    colors: [{ name: 'Gray', code: '#5C4B51' }, { name: 'Red', code: '#F06060' }],
+    bandColor: 5,
+    bodyColor: 2,
     age: 1,
     pattern: 'Polka-Dot',
     favoriteProfiles: []

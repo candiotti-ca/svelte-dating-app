@@ -1,21 +1,10 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 	import ProfilePicture from '../../components/profile-picture/ProfilePicture.svelte';
-	import type { Color } from '../../models/Color';
 	import { ProfilesService } from '../../services/profiles.service';
 	import { ages, colors, currentProfile, patterns } from '../../store/store';
 
 	let profile = $currentProfile!;
-
-	function toggleColor(color: Color): void {
-		const index = profile.colors.indexOf(color);
-		if (index > -1) {
-			profile.colors.splice(index);
-		} else {
-			profile.colors.push(color);
-		}
-		profile.colors = [...profile.colors];
-	}
 
 	onDestroy(() =>
 		ProfilesService.updateCurrentProfile(profile).then((updated) => currentProfile.set(updated))
@@ -87,21 +76,22 @@
 	</label>
 </div>
 
-<div class="flex justify-center mb-5">
-	<label class="label w-[40vw]">
-		<span>Colors</span>
-		<div class="flex space-x-5">
+<div class="flex space-x-10 justify-center mb-5">
+	<label class="label w-[19vw]">
+		<span>Band color</span>
+		<select class="select" bind:value={profile.bandColor}>
 			{#each $colors as color}
-				<label class="flex items-center space-x-1">
-					<input
-						class="checkbox"
-						type="checkbox"
-						checked={profile.colors.includes(color)}
-						on:change={() => toggleColor(color)}
-					/>
-					<p>{color.name}</p>
-				</label>
+				<option value={color.id}>{color.name}</option>
 			{/each}
-		</div>
+		</select>
+	</label>
+
+	<label class="label w-[19vw]">
+		<span>Body color</span>
+		<select class="select" bind:value={profile.bodyColor}>
+			{#each $colors as color}
+				<option value={color.id}>{color.name}</option>
+			{/each}
+		</select>
 	</label>
 </div>

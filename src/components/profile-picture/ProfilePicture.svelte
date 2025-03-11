@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { Profile } from '../../models/Profile';
+	import { colors } from '../../store/store';
 
-	export let profile: Profile;
+	const { profile }: { profile: Profile } = $props();
 
-	$: colorA = profile.colors[0]?.code || '#e0e0fc';
-	$: colorB = profile.colors[1]?.code || '#e0e0fc';
-	$: sockBody = () => {
+	let colorA = $derived($colors.find((color) => color.id === profile.bandColor)?.code || '#e0e0fc');
+	let colorB = $derived($colors.find((color) => color.id === profile.bodyColor)?.code || '#e0e0fc');
+	let sockBody = $derived(() => {
 		switch (profile.pattern) {
 			case 'Striped':
 				return `background-image: linear-gradient(0deg, ${colorA} 50%, ${colorB} 50%);`;
@@ -21,7 +22,7 @@
 			default:
 				return ``;
 		}
-	};
+	});
 </script>
 
 <div id="sock">

@@ -23,51 +23,54 @@
 	}
 </script>
 
-<button onclick={displayFilters}>
-	<i class="fa fa-filter" />
-</button>
-{#if areFiltersVisible}
-	<label class="label">
-		<span>Sort</span>
-		<select
-			class="select"
-			bind:value={sortPreference}
-			onchange={() => refreshProfiles(sortPreference)}
-		>
-			{#each sortOptions as option}
-				<option value={option.value}>{option.label}</option>
-			{/each}
-		</select>
-	</label>
+<div class="flex items-center gap-2">
+	<button onclick={displayFilters} aria-label="filters">
+		<i class="fa fa-filter" />
+	</button>
 
-	<label class="label">
-		<span>Colors</span>
-		<select
-			class="select"
-			bind:value={colorPreference}
-			multiple
-			onchange={() => refreshProfiles({ colors: colorPreference })}
-		>
-			{#each $colors as option}
-				<option value={option.name}>{option.name}</option>
-			{/each}
-		</select>
-	</label>
+	{#if areFiltersVisible}
+		<label class="label">
+			<span>Sort</span>
+			<select
+				class="select"
+				bind:value={sortPreference}
+				onchange={() => refreshProfiles(sortPreference)}
+			>
+				{#each sortOptions as option}
+					<option value={option.value}>{option.label}</option>
+				{/each}
+			</select>
+		</label>
 
-	<label class="label">
-		<span>Pattern</span>
-		<select
-			class="select"
-			bind:value={patternPreference}
-			onchange={() => refreshProfiles({ pattern: patternPreference })}
-		>
-			<option value={null}>--Select a pattern--</option>
-			{#each $patterns as option}
-				<option value={option.name}>{option.name}</option>
-			{/each}
-		</select>
-	</label>
-{/if}
+		<label class="label">
+			<span>Colors</span>
+			<select
+				class="select"
+				bind:value={colorPreference}
+				multiple
+				onchange={() => refreshProfiles({ colors: colorPreference })}
+			>
+				{#each $colors as option}
+					<option value={option.name}>{option.name}</option>
+				{/each}
+			</select>
+		</label>
+
+		<label class="label">
+			<span>Pattern</span>
+			<select
+				class="select"
+				bind:value={patternPreference}
+				onchange={() => refreshProfiles({ pattern: patternPreference })}
+			>
+				<option value={null}>--Select a pattern--</option>
+				{#each $patterns as option}
+					<option value={option.name}>{option.name}</option>
+				{/each}
+			</select>
+		</label>
+	{/if}
+</div>
 
 <div class="flex space-x-4">
 	{#each $profiles as profile}

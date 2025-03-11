@@ -2,23 +2,23 @@ import { expect, test } from '@playwright/test';
 import type { Color } from '../src/models/Color';
 import { Profile } from '../src/models/Profile';
 
-const COLOR_BLACK: Color = { code: '#000', name: 'black' };
-const COLOR_WHITE: Color = { code: '#FFF', name: 'white' };
+const COLOR_BLACK: Color = { id: 1, code: '#000', name: 'black' };
+const COLOR_WHITE: Color = { id: 2, code: '#FFF', name: 'white' };
 
 function buildProfile(size: number, colors: Color[], age: number, pattern: string): Profile {
-    return new Profile(
-        '1',
-        'firstname',
-        'lastname',
-        'abstract',
-        'city',
+    return new Profile({
+        id: '1',
+        lastname: 'John',
+        firstname: 'Doe',
+        abstract: "Je déteste les salles de bains, on finit toujours mouillé !",
+        city: 'Tiroir de gauche',
         size,
-        colors,
+        bandColor: 1,
+        bodyColor: 2,
         age,
         pattern,
-        [],
-        COLOR_BLACK
-    );
+        favoriteProfiles: []
+    });
 };
 
 test.describe('profile test', () => {

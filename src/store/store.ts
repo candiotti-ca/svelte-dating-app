@@ -21,11 +21,11 @@ export const patterns: Readable<Pattern[]> = readable([
 ]);
 
 export const colors: Readable<Color[]> = readable([
-    { name: 'Red', code: '#F06060' },//#F26469 red
-    { name: 'Yellow', code: '#F3B562' },//#9085BA purple
-    { name: 'Blue', code: '#8CBEB2' }, //#3B889A blue
-    { name: 'White', code: '#F2EBBF' },//#76B479 green
-    { name: 'Gray', code: '#5C4B51' }
+    { id: 1, name: 'Red', code: '#F26469' },
+    { id: 2, name: 'Yellow', code: '#F3B562' },
+    { id: 3, name: 'Blue', code: '#3B889A' },
+    { id: 4, name: 'Purple', code: '#9085BA' },
+    { id: 5, name: 'Green', code: '#76B479' }
 ]);
 
 export const currentProfile: Writable<Profile | null> = writable(null);
