@@ -2,7 +2,8 @@
 	import { onDestroy } from 'svelte';
 	import ProfilePicture from '../../components/profile-picture/ProfilePicture.svelte';
 	import type { Color } from '../../models/Color';
-	import { ages, colors, currentProfile, patterns, profiles } from '../../store/store';
+	import { ProfilesService } from '../../services/profiles.service';
+	import { ages, colors, currentProfile, patterns } from '../../store/store';
 
 	let profile = $currentProfile!;
 
@@ -16,7 +17,9 @@
 		profile.colors = [...profile.colors];
 	}
 
-	//TODOonDestroy(() => profiles.updateProfile(profile));
+	onDestroy(() =>
+		ProfilesService.updateCurrentProfile(profile).then((updated) => currentProfile.set(updated))
+	);
 </script>
 
 <div class="flex flex-col items-center mb-10">

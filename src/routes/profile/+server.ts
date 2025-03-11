@@ -1,3 +1,4 @@
+import { json } from "@sveltejs/kit";
 import { type ProfileParams } from "../../models/Profile";
 
 const profileA: ProfileParams = {
@@ -14,9 +15,12 @@ const profileA: ProfileParams = {
 };
 
 export function GET() {
-    return new Response(JSON.stringify(profileA), {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    return json(profileA);
+}
+
+export async function PATCH(params: any) {
+    const body = await params.request.json();
+    delete body.id;
+
+    return json({ ...profileA, ...body });
 }

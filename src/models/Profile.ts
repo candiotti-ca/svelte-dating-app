@@ -1,6 +1,6 @@
 import type { Color } from "./Color";
 
-export type ProfileParams = { id: string, firstname: string, lastname: string, abstract: string, city: string, size: number, colors: Color[], age: number, pattern: string, favoriteProfiles: string[] };
+export type ProfileParams = { id: string, firstname: string, lastname: string, abstract?: string, city: string, size: number, colors: Color[], age: number, pattern: string, favoriteProfiles: string[] };
 
 export class Profile {
     id: string;
